@@ -30,9 +30,7 @@
         {
             this.TC_ProgramingLanguages = new System.Windows.Forms.TabControl();
             this.ProgramingLanguage = new System.Windows.Forms.TabPage();
-            this.PANEL_CodeDescription = new System.Windows.Forms.Panel();
-            this.GB_CodeDescription = new System.Windows.Forms.GroupBox();
-            this.LBL_CodeDescription = new System.Windows.Forms.Label();
+            this.TXTBOX_CodeDescription = new System.Windows.Forms.TextBox();
             this.TXTBOX_Code = new System.Windows.Forms.TextBox();
             this.LB_CodeName = new System.Windows.Forms.ListBox();
             this.NewProgramingLanguageForm = new System.Windows.Forms.TabPage();
@@ -42,10 +40,10 @@
             this.LBL_SoftwareDescription = new System.Windows.Forms.Label();
             this.BTN_DeleteProgramingLanguage = new System.Windows.Forms.Button();
             this.BTN_DeleteCode = new System.Windows.Forms.Button();
+            this.BTN_SaveChanges = new System.Windows.Forms.Button();
+            this.BTN_DropChanges = new System.Windows.Forms.Button();
             this.TC_ProgramingLanguages.SuspendLayout();
             this.ProgramingLanguage.SuspendLayout();
-            this.PANEL_CodeDescription.SuspendLayout();
-            this.GB_CodeDescription.SuspendLayout();
             this.NewProgramingLanguageForm.SuspendLayout();
             this.GB_AboutSoftware.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +61,7 @@
             // 
             // ProgramingLanguage
             // 
-            this.ProgramingLanguage.Controls.Add(this.PANEL_CodeDescription);
+            this.ProgramingLanguage.Controls.Add(this.TXTBOX_CodeDescription);
             this.ProgramingLanguage.Controls.Add(this.TXTBOX_Code);
             this.ProgramingLanguage.Controls.Add(this.LB_CodeName);
             this.ProgramingLanguage.Location = new System.Drawing.Point(4, 30);
@@ -75,35 +73,17 @@
             this.ProgramingLanguage.Text = "Programozási Nyelv";
             this.ProgramingLanguage.UseVisualStyleBackColor = true;
             // 
-            // PANEL_CodeDescription
+            // TXTBOX_CodeDescription
             // 
-            this.PANEL_CodeDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PANEL_CodeDescription.Controls.Add(this.GB_CodeDescription);
-            this.PANEL_CodeDescription.Location = new System.Drawing.Point(199, 307);
-            this.PANEL_CodeDescription.Name = "PANEL_CodeDescription";
-            this.PANEL_CodeDescription.Size = new System.Drawing.Size(412, 96);
-            this.PANEL_CodeDescription.TabIndex = 3;
-            // 
-            // GB_CodeDescription
-            // 
-            this.GB_CodeDescription.Controls.Add(this.LBL_CodeDescription);
-            this.GB_CodeDescription.Location = new System.Drawing.Point(9, 7);
-            this.GB_CodeDescription.Name = "GB_CodeDescription";
-            this.GB_CodeDescription.Size = new System.Drawing.Size(392, 80);
-            this.GB_CodeDescription.TabIndex = 4;
-            this.GB_CodeDescription.TabStop = false;
-            this.GB_CodeDescription.Text = "Megjegyzés";
-            // 
-            // LBL_CodeDescription
-            // 
-            this.LBL_CodeDescription.Font = new System.Drawing.Font("Montserrat", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LBL_CodeDescription.ForeColor = System.Drawing.Color.Gray;
-            this.LBL_CodeDescription.Location = new System.Drawing.Point(7, 26);
-            this.LBL_CodeDescription.Name = "LBL_CodeDescription";
-            this.LBL_CodeDescription.Size = new System.Drawing.Size(383, 53);
-            this.LBL_CodeDescription.TabIndex = 0;
-            this.LBL_CodeDescription.Text = "A kódrészlet arra jó, hogy a placeholdert, ami az előző verziójú C# formokban nem" +
-    " létezik, helyettesítse";
+            this.TXTBOX_CodeDescription.BackColor = System.Drawing.SystemColors.Control;
+            this.TXTBOX_CodeDescription.Location = new System.Drawing.Point(199, 307);
+            this.TXTBOX_CodeDescription.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TXTBOX_CodeDescription.Multiline = true;
+            this.TXTBOX_CodeDescription.Name = "TXTBOX_CodeDescription";
+            this.TXTBOX_CodeDescription.Size = new System.Drawing.Size(412, 96);
+            this.TXTBOX_CodeDescription.TabIndex = 4;
+            this.TXTBOX_CodeDescription.TabStop = false;
+            this.TXTBOX_CodeDescription.TextChanged += new System.EventHandler(this.TXTBOX_CodeDescription_TextChanged);
             // 
             // TXTBOX_Code
             // 
@@ -111,12 +91,16 @@
             this.TXTBOX_Code.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TXTBOX_Code.Multiline = true;
             this.TXTBOX_Code.Name = "TXTBOX_Code";
+            this.TXTBOX_Code.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TXTBOX_Code.Size = new System.Drawing.Size(412, 308);
             this.TXTBOX_Code.TabIndex = 2;
+            this.TXTBOX_Code.TabStop = false;
+            this.TXTBOX_Code.TextChanged += new System.EventHandler(this.TXTBOX_Code_TextChanged);
             // 
             // LB_CodeName
             // 
             this.LB_CodeName.FormattingEnabled = true;
+            this.LB_CodeName.HorizontalScrollbar = true;
             this.LB_CodeName.IntegralHeight = false;
             this.LB_CodeName.ItemHeight = 21;
             this.LB_CodeName.Location = new System.Drawing.Point(0, 0);
@@ -124,6 +108,7 @@
             this.LB_CodeName.Name = "LB_CodeName";
             this.LB_CodeName.Size = new System.Drawing.Size(204, 403);
             this.LB_CodeName.TabIndex = 0;
+            this.LB_CodeName.SelectedIndexChanged += new System.EventHandler(this.LB_CodeName_SelectedIndexChanged);
             // 
             // NewProgramingLanguageForm
             // 
@@ -188,6 +173,7 @@
             this.BTN_DeleteProgramingLanguage.TabIndex = 11;
             this.BTN_DeleteProgramingLanguage.Text = "Kijelölt programozási nyelv törlése";
             this.BTN_DeleteProgramingLanguage.UseVisualStyleBackColor = true;
+            this.BTN_DeleteProgramingLanguage.Click += new System.EventHandler(this.BTN_DeleteProgramingLanguage_Click);
             // 
             // BTN_DeleteCode
             // 
@@ -197,24 +183,48 @@
             this.BTN_DeleteCode.TabIndex = 12;
             this.BTN_DeleteCode.Text = "Kijelölt kód törlése";
             this.BTN_DeleteCode.UseVisualStyleBackColor = true;
+            this.BTN_DeleteCode.Click += new System.EventHandler(this.BTN_DeleteCode_Click);
+            // 
+            // BTN_SaveChanges
+            // 
+            this.BTN_SaveChanges.ForeColor = System.Drawing.Color.Green;
+            this.BTN_SaveChanges.Location = new System.Drawing.Point(639, 132);
+            this.BTN_SaveChanges.Name = "BTN_SaveChanges";
+            this.BTN_SaveChanges.Size = new System.Drawing.Size(71, 84);
+            this.BTN_SaveChanges.TabIndex = 14;
+            this.BTN_SaveChanges.Text = "✔";
+            this.BTN_SaveChanges.UseVisualStyleBackColor = true;
+            this.BTN_SaveChanges.Click += new System.EventHandler(this.BTN_SaveChanges_Click);
+            // 
+            // BTN_DropChanges
+            // 
+            this.BTN_DropChanges.ForeColor = System.Drawing.Color.Red;
+            this.BTN_DropChanges.Location = new System.Drawing.Point(716, 132);
+            this.BTN_DropChanges.Name = "BTN_DropChanges";
+            this.BTN_DropChanges.Size = new System.Drawing.Size(71, 84);
+            this.BTN_DropChanges.TabIndex = 15;
+            this.BTN_DropChanges.Text = "❌";
+            this.BTN_DropChanges.UseVisualStyleBackColor = true;
+            this.BTN_DropChanges.Click += new System.EventHandler(this.BTN_DropChanges_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 459);
+            this.Controls.Add(this.BTN_DropChanges);
+            this.Controls.Add(this.BTN_SaveChanges);
             this.Controls.Add(this.TC_ProgramingLanguages);
             this.Controls.Add(this.GB_AboutSoftware);
             this.Controls.Add(this.BTN_DeleteProgramingLanguage);
             this.Controls.Add(this.BTN_DeleteCode);
             this.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.TC_ProgramingLanguages.ResumeLayout(false);
             this.ProgramingLanguage.ResumeLayout(false);
             this.ProgramingLanguage.PerformLayout();
-            this.PANEL_CodeDescription.ResumeLayout(false);
-            this.GB_CodeDescription.ResumeLayout(false);
             this.NewProgramingLanguageForm.ResumeLayout(false);
             this.NewProgramingLanguageForm.PerformLayout();
             this.GB_AboutSoftware.ResumeLayout(false);
@@ -227,7 +237,6 @@
         private System.Windows.Forms.TabControl TC_ProgramingLanguages;
         private System.Windows.Forms.TabPage ProgramingLanguage;
         private System.Windows.Forms.TextBox TXTBOX_Code;
-        private System.Windows.Forms.ListBox LB_CodeName;
         private System.Windows.Forms.TabPage NewProgramingLanguageForm;
         private System.Windows.Forms.Button BTN_AddProgramingLanguage;
         private System.Windows.Forms.TextBox TXTBOX_ProgramingLanguageName;
@@ -235,9 +244,10 @@
         private System.Windows.Forms.Label LBL_SoftwareDescription;
         private System.Windows.Forms.Button BTN_DeleteProgramingLanguage;
         private System.Windows.Forms.Button BTN_DeleteCode;
-        private System.Windows.Forms.Panel PANEL_CodeDescription;
-        private System.Windows.Forms.GroupBox GB_CodeDescription;
-        private System.Windows.Forms.Label LBL_CodeDescription;
+        private System.Windows.Forms.TextBox TXTBOX_CodeDescription;
+        private System.Windows.Forms.Button BTN_SaveChanges;
+        private System.Windows.Forms.Button BTN_DropChanges;
+        private System.Windows.Forms.ListBox LB_CodeName;
     }
 }
 

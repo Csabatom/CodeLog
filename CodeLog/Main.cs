@@ -146,6 +146,7 @@ namespace CodeLog
                     {
                         this.LB_CodeName.Items.Insert(LB_CodeName.Items.Count - 1, newCodeSnippet.ReturnCodeSnippet);
                         SQLCommand("INSERT INTO Codes (programinglanguage_id, name, code, description) VALUES ('" + newCodeSnippet.ReturnCodeSnippet.ProgramingLanguage_Id + "', '" + newCodeSnippet.ReturnCodeSnippet.Name + "', '" + newCodeSnippet.ReturnCodeSnippet.Code + "', '" + newCodeSnippet.ReturnCodeSnippet.Description + "')");
+                        LoadCodeSnippetList(-1);
                     }
                 }
             }

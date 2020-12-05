@@ -78,6 +78,7 @@
             this.TXTBOX_CodeDescription.BackColor = System.Drawing.SystemColors.Control;
             this.TXTBOX_CodeDescription.Location = new System.Drawing.Point(199, 307);
             this.TXTBOX_CodeDescription.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TXTBOX_CodeDescription.MaxLength = 170;
             this.TXTBOX_CodeDescription.Multiline = true;
             this.TXTBOX_CodeDescription.Name = "TXTBOX_CodeDescription";
             this.TXTBOX_CodeDescription.Size = new System.Drawing.Size(412, 96);
@@ -87,6 +88,10 @@
             // 
             // TXTBOX_Code
             // 
+            this.TXTBOX_Code.AcceptsReturn = true;
+            this.TXTBOX_Code.AcceptsTab = true;
+            this.TXTBOX_Code.BackColor = System.Drawing.SystemColors.Window;
+            this.TXTBOX_Code.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TXTBOX_Code.Location = new System.Drawing.Point(199, 0);
             this.TXTBOX_Code.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TXTBOX_Code.Multiline = true;
@@ -95,6 +100,7 @@
             this.TXTBOX_Code.Size = new System.Drawing.Size(412, 308);
             this.TXTBOX_Code.TabIndex = 2;
             this.TXTBOX_Code.TabStop = false;
+            this.TXTBOX_Code.WordWrap = false;
             this.TXTBOX_Code.TextChanged += new System.EventHandler(this.TXTBOX_Code_TextChanged);
             // 
             // LB_CodeName

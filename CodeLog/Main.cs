@@ -95,27 +95,27 @@ namespace CodeLog
             if(TC_ProgramingLanguages.SelectedIndex != -1)
             {
                 if(TC_ProgramingLanguages.SelectedTab.Name != "NewProgramingLanguageForm")
-            {
-                TabPage tabPage = TC_ProgramingLanguages.SelectedTab;
-                tabPage.Controls.Add(this.LB_CodeName);
-                tabPage.Controls.Add(this.TXTBOX_Code);
-                tabPage.Controls.Add(this.TXTBOX_CodeDescription);
-                BTN_DeleteProgramingLanguage.Show();
-                BTN_DeleteCode.Show();
-                BTN_DeleteCode.Enabled = false;
+                {
+                    TabPage tabPage = TC_ProgramingLanguages.SelectedTab;
+                    tabPage.Controls.Add(this.LB_CodeName);
+                    tabPage.Controls.Add(this.TXTBOX_Code);
+                    tabPage.Controls.Add(this.TXTBOX_CodeDescription);
+                    BTN_DeleteProgramingLanguage.Show();
+                    BTN_DeleteCode.Show();
+                    BTN_DeleteCode.Enabled = false;
+                    TXTBOX_Code.Enabled = false;
+                    TXTBOX_CodeDescription.Enabled = false;
 
-                    this.TXTBOX_Code.Text = "";
-                this.TXTBOX_CodeDescription.Text = "";
-                LoadCodeSnippetList(-1);
-                GB_AboutSoftware.Size = new Size(149, 219);
-            } else
-            {
-                BTN_DeleteProgramingLanguage.Hide();
-                BTN_DeleteCode.Hide();
-            }
-            BTN_SaveChanges.Hide();
-            BTN_DropChanges.Hide();
-            LB_CodeName.Enabled = true;
+                    LoadCodeSnippetList(-1);
+                    GB_AboutSoftware.Size = new Size(149, 219);
+                } else
+                {
+                    BTN_DeleteProgramingLanguage.Hide();
+                    BTN_DeleteCode.Hide();
+                }
+                BTN_SaveChanges.Hide();
+                BTN_DropChanges.Hide();
+                LB_CodeName.Enabled = true;
             }
         }
 
@@ -125,6 +125,10 @@ namespace CodeLog
             {
                 LB_CodeName.SelectedIndex = -1;
                 BTN_DeleteCode.Enabled = false;
+                TXTBOX_Code.Text = "";
+                TXTBOX_CodeDescription.Text = "";
+                TXTBOX_Code.Enabled = false;
+                TXTBOX_CodeDescription.Enabled = false;
                 using (var newCodeSnippet = new NewCodeSnippet())
                 {
                     newCodeSnippet.ProgramingLanguage = new ProgramingLanguage(int.Parse(TC_ProgramingLanguages.SelectedTab.Name), TC_ProgramingLanguages.SelectedTab.Text);
@@ -160,9 +164,11 @@ namespace CodeLog
                         TXTBOX_Code.Text = ((CodeSnippet)LB_CodeName.SelectedItem).Code;
                         TXTBOX_CodeDescription.Text = ((CodeSnippet)LB_CodeName.SelectedItem).Description;
                         BTN_DeleteCode.Enabled = true;
+                        TXTBOX_Code.Enabled = true;
+                        TXTBOX_CodeDescription.Enabled = true;
                     }
                     catch { }
-                }
+                } else { }
             }
         }
 

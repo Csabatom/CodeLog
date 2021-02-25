@@ -168,8 +168,7 @@
             this.LBL_SoftwareDescription.Name = "LBL_SoftwareDescription";
             this.LBL_SoftwareDescription.Size = new System.Drawing.Size(137, 167);
             this.LBL_SoftwareDescription.TabIndex = 0;
-            this.LBL_SoftwareDescription.Text = "A program a Trophien© Bt. tulajdona. Az alkalmazás használatával tud már megírt k" +
-    "ódokat elmenteni, és később újra felhasználni.";
+            this.LBL_SoftwareDescription.Text = " Az alkalmazás használatával már megírt kódokat tud elmenteni, és később újra felhasználni.";
             // 
             // BTN_DeleteProgramingLanguage
             // 
